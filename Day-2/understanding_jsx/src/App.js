@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
 // let name = "Yubaraj Karki";
+import TextForm from './components/TextForm';
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
 {/* <Navbar title= "TextUtils" aboutUtils="About Utils"/> */}
 {/* <Navbar/> */}
 <Navbar title= "TextUtils" />
+
+<div className="container my-3">
+  <TextForm heading= "Enter Text Here" />
+</div>
 
     </>
   );
