@@ -4,6 +4,10 @@ import React, {  useState } from "react";
 
 export default function TextForm(props) {
       
+      const [text, setText] = useState('');
+
+      // text = "New Text"; //Wrong way to change the state
+      // setText = ("New Text"); //Correct way to change the state
 
       const handleUpClick = () => {
             // console.log("Uppercase was clicked: " + text);
@@ -26,11 +30,17 @@ export default function TextForm(props) {
             setText(event.target.value);
       } 
 
-      const [text, setText] = useState('');
+      const handleCopyClick = () => {
+            var text = document.getElementById("myBox");
+            text.select();
+            navigator.clipboard.writeText(text.value);
+      } 
 
-      // text = "New Text"; //Wrong way to change the state
-      // setText = ("New Text"); //Correct way to change the state
-      
+      const handleExtraSpace = (event) => {
+            let newText = text.split(/[ ]+/);
+            setText(newText.join(" "));
+      } 
+
       
 
       return (
@@ -43,12 +53,14 @@ export default function TextForm(props) {
   <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Convert to Uppercase</button>
   <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to Lowercase</button>
   <button className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>Clear Text</button>
+  <button className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>Copy Text</button>
+  <button className="btn btn-primary mx-2 my-2" onClick={handleExtraSpace}>Remove Extra Space</button>
   
 </div>
 
 <div className="container my-3">
       <h2>Your Text Summary</h2>
-      <p>{text.split(" ").length} words and {text.length} characters</p>
+      <p>{text && text.trim().split(/\s+/).length} words and  {text && text.length} characters</p>
       <p>{0.008 * text.split(" ").length} Minutes Read</p>
       <h2>Preview</h2>
       <p>{text}</p>
