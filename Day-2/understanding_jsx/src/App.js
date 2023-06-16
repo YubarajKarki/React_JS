@@ -2,9 +2,16 @@ import './App.css';
 import Navbar from './components/Navbar';
 // let name = "Yubaraj Karki";
 import TextForm from './components/TextForm';
-// import About from './components/About';
+import About from './components/About';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
 
 function App() {
 
@@ -32,7 +39,7 @@ function App() {
     else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
-      showAlert("Light mode has been enabld", "success");
+      showAlert("Light mode has been enabled", "success");
       document.title = "TextUtils-Light Mode"
 
     }
@@ -62,17 +69,25 @@ function App() {
 
       {/* <Navbar title= "TextUtils" aboutUtils="About Utils"/> */}
       {/* <Navbar/> */}
-      
+      <router>
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
 
-      <Alert alert={alert} />
+      <Alert alert= {alert} />
 
       <div className="container my-3">
-        {<TextForm showAlert={showAlert} heading="Enter Text Here" mode ={mode} />}
-        
-        {/* <About /> */}
+      <switch>
+          <route path="/about">
+            <About />
+          </route>
+          
+          <route path="/">
+          <TextForm showAlert={showAlert} heading="Enter Text Here" mode ={mode} />
+          </route>
+          
+      </switch>
+        </div>
 
-      </div>
+      </router>  
     </>
   );
 }
