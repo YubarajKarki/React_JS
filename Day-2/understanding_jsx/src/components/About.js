@@ -7,10 +7,10 @@ export default function About(props)
             backgroundColor: 'white'
       })
   
-      let myStyle = {
-        color: props.mode ==='dark'?'white':'#042743',
-        backgroundColor: props.mode ==='dark'?'rgb(36 74 104)':'white', 
-    }
+    //   let myStyle = {
+    //     color: props.mode ==='dark'?'white':'#042743',
+    //     backgroundColor: props.mode ==='dark'?'rgb(36 74 104)':'white', 
+    // }
 
       const [btnText, setBtnText] = useState("Enable Dark Mode");
 
@@ -35,8 +35,8 @@ export default function About(props)
 
       return (
             <div className="container" style={myStyle}>
-          {/* <h1 className="my-2">About Us</h1> */}
-          <h1 className="my-3" style={{color: props.mode ==='dark'?'white':'#042743'}}>About Us</h1>
+          <h1 className="my-2">About Us</h1>
+          {/* <h1 className="my-3" style={{color: props.mode ==='dark'?'white':'#042743'}}>About Us</h1> */}
                   <div className="accordion" id="accordionExample" style={myStyle}>
   <div className="accordion-item">
     <h2 className="accordion-header">
