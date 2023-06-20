@@ -24,10 +24,6 @@ export default function Navbar(props) {
               {/* <a className="nav-link" href="#">{props.aboutUtils}</a> */}
             </li>
           </ul>
-          {/* <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form> */}
 
           <div className="d-flex">
             <div className="bg-primary rounded mx-2" onClick={() => { props.toggleMode('primary') }} style={{ height: '30px', width: '30px', cursor: 'pointer' }}></div>
@@ -43,8 +39,6 @@ export default function Navbar(props) {
             <div className="bg-light rounded mx-2" onClick={() => { props.toggleMode('light') }} style={{ height: '30px', width: '30px', cursor: 'pointer' }}></div>
             
           </div> 
-          
-
 
           {/* <div className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'light'}`}>
             <input className="form-check-input" onClick={()=>{props.toggleMode(null)}} type="checkbox" role="switch" id="flexSwitchCheckDefault" />

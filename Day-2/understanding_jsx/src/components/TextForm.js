@@ -29,7 +29,6 @@ export default function TextForm(props) {
 
       }
 
-
       const handleOnChange = (event) => {
             // console.log("On Change");
             setText(event.target.value);
@@ -49,8 +48,6 @@ export default function TextForm(props) {
             setText(newText.join(" "));
             props.showAlert("Extra Space Removed!", "success");
       }
-
-
 
       return (
             <>
