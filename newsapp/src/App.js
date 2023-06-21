@@ -28,6 +28,8 @@ import './App.css';
 //Class Based Component
 import React, { Component } from 'react'
 import NavBar from './components/NavBar';
+import News from './components/News';
+import NewsItem from './components/NewsItem';
 
 export default class App extends Component {
   // a = "World!!!";
@@ -36,7 +38,9 @@ export default class App extends Component {
       // <div>Hello {this.a} This is my First Class Based Component</div>
 
       <div>
-        <NavBar/>
+        <NavBar />
+        <News />
+        <NewsItem />
       </div>
     )
   }
