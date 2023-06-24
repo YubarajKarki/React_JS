@@ -73,17 +73,11 @@ render() {
     <div className="container my-3">
       <h2>NewsAPP - Top Headlines</h2>
       <div className="row">
-        <div className="col-md-4">
-          <NewsItem title="myTitle" description="mydesc" imgURL="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2023/06/0/0/MSFT-Activision-A.jpg?ve=1&tl=1"  newsURL= "x" />
+      {this.state.articles.map((element)=>{
+        return <div className="col-md-4" key= {element.url}>
+          <NewsItem  title={element.title.slice(0, 45)} description={element.description.slice(0, 88)} imgURL={element.urlToImage}  newsURL= {element.url} />
         </div>
-
-        <div className="col-md-4">
-          <NewsItem title="myTitle" description="mydesc" />
-        </div>
-
-        <div className="col-md-4">
-          <NewsItem title="myTitle" description="mydesc" />
-        </div>
+        })}
 
       </div>
     </div>
