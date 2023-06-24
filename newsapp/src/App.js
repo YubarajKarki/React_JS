@@ -1,4 +1,4 @@
-import './App.css';
+import './App.css';  
 
 //Function Based Component
 // function App() {
@@ -29,7 +29,6 @@ import './App.css';
 import React, { Component } from 'react'
 import NavBar from './components/NavBar';
 import News from './components/News';
-import NewsItem from './components/NewsItem';
 
 export default class App extends Component {
   // a = "World!!!";
@@ -40,7 +39,6 @@ export default class App extends Component {
       <div>
         <NavBar />
         <News />
-        <NewsItem />
       </div>
     )
   }
