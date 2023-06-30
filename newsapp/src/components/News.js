@@ -73,7 +73,7 @@ render() {
       <div className="row">
       {!this.state.loading && this.state.articles.map((element)=>{
         return <div className="col-md-4" key= {element.url}>
-          <NewsItem  title={element.title?element.title:""} description={element.description?element.description:""} imgURL={element.urlToImage}  newsURL= {element.url} />
+          <NewsItem  title={element.title?element.title:""} description={element.description?element.description:""} imgURL={element.urlToImage}  newsURL= {element.url}  author={element.author} date={element.publishedAt} source={element.source.name}/>
         </div>
         })}
       </div>
