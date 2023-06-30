@@ -8,7 +8,7 @@ export class News extends Component {
   static defaultProps = {
     country: 'in',
     pageSize: 12,
-    category: 'general'
+    category: 'General'
   }
 
   static propTypes = {
@@ -18,13 +18,14 @@ export class News extends Component {
   }
 
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       articles: [],
       loading: false,
       page: 1
     }
+    document.title =`${ this.props.category} - NewsAPP`;
   }
 
   async updateNews() {
@@ -53,7 +54,7 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1 className="text-center" style={{ margin: '30px 0px' }}>NewsAPP - Top Headlines</h1>
+        <h1 className="text-center" style={{ margin: '30px 0px' }}>NewsAPP - Top {this.props.category} Headlines</h1>
         {this.state.loading && <Spinner />}
         <div className="row">
           {!this.state.loading && this.state.articles.map((element) => {
