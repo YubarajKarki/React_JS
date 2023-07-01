@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import NewsItem from './NewsItem';
 import Spinner from './Spinner';
 import PropTypes from 'prop-types';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
+const style = {
+  height: 30,
+  border: "1px solid green",
+  margin: 6,
+  padding: 8
+};
 
 export class News extends Component {
 
@@ -23,9 +31,10 @@ export class News extends Component {
     this.state = {
       articles: [],
       loading: false,
-      page: 1
+      page: 1,
+      totalResults: 0
     }
-    document.title =`${ this.props.category} - NewsAPP`;
+    document.title = `${this.props.category} - NewsAPP`;
   }
 
   async updateNews() {
@@ -51,18 +60,40 @@ export class News extends Component {
     this.updateNews();
   }
 
+  fetchMoreData = () => {
+    setTimeout(() => {
+      this.setState({
+        items: this.state.items.concat(Array.from({ length: 20 }))
+      });
+    }, 1500);
+  };
+
   render() {
     return (
       <div className="container my-3">
         <h1 className="text-center" style={{ margin: '30px 0px' }}>NewsAPP - Top {this.props.category} Headlines</h1>
-        {this.state.loading && <Spinner />}
+
+        {/* {this.state.loading && <Spinner />} */}
+        <InfiniteScroll
+          dataLength={this.state.articles.length}
+          next={this.fetchMoreData}
+          style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
+          inverse={true} //
+          hasMore={this.state.articles.length !== this.state.totalResults}
+          loader={<Spinner />}
+          scrollableTarget="scrollableDiv"
+        >
+        
         <div className="row">
-          {!this.state.loading && this.state.articles.map((element) => {
+          {this.state.articles.map((element) => {
             return <div className="col-md-4" key={element.url}>
               <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imgURL={element.urlToImage} newsURL={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
             </div>
           })}
-        </div>
+          </div>
+          
+        </InfiniteScroll>
+        
         <div className="d-flex justify-content-between">
           <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePreviousClick}>&larr; Previous</button>
           <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-dark" onClick={this.handleNextClick} >Next &rarr;</button>
