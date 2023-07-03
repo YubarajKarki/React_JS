@@ -16,7 +16,7 @@ export class News extends Component {
   static propTypes = {
     country: PropTypes.string,
     pageSize: PropTypes.number,
-    category: PropTypes.string
+    category: PropTypes.string,
   }
 
 
@@ -28,7 +28,7 @@ export class News extends Component {
       page: 1,
       totalResults: 0
     }
-    document.title = `${this.props.category} - NewsAPP`;
+    // document.title = `${this.props.category} - NewsAPP`;
   }
 
   async updateNews() {
@@ -44,7 +44,7 @@ export class News extends Component {
     this.props.setProgress(100);
   }
 
-  async componentDidMount(props) {
+  async componentDidMount() {
     this.updateNews();
   }
 
