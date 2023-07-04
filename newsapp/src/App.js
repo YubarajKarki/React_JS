@@ -27,7 +27,7 @@ import './App.css';
 
 
 //Class Based Component
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import NavBar from './components/NavBar';
 import News from './components/News';
 import {
@@ -38,54 +38,40 @@ import {
 
 import LoadingBar from 'react-top-loading-bar'
 
-console.log(process.env.REACT_APP_NEWS_API_KEY);
+const App = () => {
+  const pageSize = 12;
+  const [progress, setProgress] = useState(0);
 
-export default class App extends Component {
-  // a = "World!!!";
-  pageSize = 12;
-  apiKey = process.env.REACT_APP_NEWS_API_KEY;
+  return (
+    <div>
+      <Router>
+        <LoadingBar
+          color='#f11946'
+          height={3}
+          progress={progress}
+        />
 
-  state = {
-    progress: 0
-  }
-  setProgress = (progress) => {
-    this.setState({ progress: progress })
-  }
+        <NavBar />
+        <Routes>
+          <Route exact path="/" element={<News setProgress={setProgress} key="general" pageSize={pageSize} country="in" category="General" />} />
 
-  render() {
-    return (
-      // <div>Hello {this.a} This is my First Class Based Component</div>
-      <div>
-        <Router>
-          <LoadingBar
-            color='#f11946'
-            height={3}
-            progress={this.state.progress}
-          />
-          <NavBar />
-          {/* <News setProgress={this.setProgress}   pageSize={this.pageSize} country="in" category="Sports" /> */}
-          <Routes>
-            <Route exact path="/" element={<News setProgress={this.setProgress} apiKey={this.apiKey} key="general" pageSize={this.pageSize} country="in" category="General" />} />
+          <Route exact path="/business" element={<News setProgress={setProgress} key="business" pageSize={pageSize} country="in" category="Business" />} />
 
-            <Route exact path="/business" element={<News setProgress={this.setProgress} apiKey={this.apiKey} key="business" pageSize={this.pageSize} country="in" category="Business" />} />
+          <Route exact path="/entertainment" element={<News setProgress={setProgress} key="entertainment" pageSize={pageSize} country="in" category="Entertainment" />} />
 
-            <Route exact path="/entertainment" element={<News setProgress={this.setProgress} apiKey={this.apiKey} key="entertainment" pageSize={this.pageSize} country="in" category="Entertainment" />} />
+          <Route exact path="/health" element={<News setProgress={setProgress} key="health" pageSize={pageSize} country="in" category="Health" />} />
 
-            <Route exact path="/health" element={<News setProgress={this.setProgress} apiKey={this.apiKey} key="health" pageSize={this.pageSize} country="in" category="Health" />} />
+          <Route exact path="/Science" element={<News setProgress={setProgress} key="science" pageSize={pageSize} country="in" category="Science" />} />
 
-            <Route exact path="/Science" element={<News setProgress={this.setProgress} apiKey={this.apiKey} key="science" pageSize={this.pageSize} country="in" category="Science" />} />
+          <Route exact path="/general" element={<News setProgress={setProgress} key="general" pageSize={pageSize} country="in" category="General" />} />
 
-            <Route exact path="/general" element={<News setProgress={this.setProgress} apiKey={this.apiKey} key="general" pageSize={this.pageSize} country="in" category="General" />} />
+          <Route exact path="/sports" element={<News setProgress={setProgress} key="sports" pageSize={pageSize} country="in" category="Sports" />} />
 
-            <Route exact path="/sports" element={<News setProgress={this.setProgress} apiKey={this.apiKey} key="sports" pageSize={this.pageSize} country="in" category="Sports" />} />
-
-            <Route exact path="/technology" element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} country="in" category="Technology" />} />
-
-          </Routes>
-        </Router>
-      </div>
-    )
-  }
+          <Route exact path="/technology" element={<News setProgress={setProgress} pageSize={pageSize} country="in" category="Technology" />} />
+        </Routes>
+      </Router>
+    </div>
+  )
 }
 
- 
+export default App
