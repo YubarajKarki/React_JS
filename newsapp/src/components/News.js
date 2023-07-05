@@ -66,7 +66,6 @@ const News = (props) => {
     </>
   )
 }
-
 News.defaultProps = {
   country: 'in',
   pageSize: 12,
@@ -77,5 +76,4 @@ News.propTypes = {
   pageSize: PropTypes.number,
   category: PropTypes.string
 }
-
 export default News
